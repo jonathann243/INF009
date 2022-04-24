@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.Queue;
 import java.util.Timer;
 
-import static main.java.com.company.MyUtils.Constante.L_LEC;
+import static main.java.com.company.MyUtils.Util_File_path.L_LEC;
 
 public class Reseau {
 

@@ -1,5 +1,6 @@
 package main.java.com.company.Couche;
 import main.java.com.company.Enum.Primitiv;
+import main.java.com.company.MyUtils.Util_File_RW;
 import main.java.com.company.Npdu;
 import main.java.com.company.Paquet.Paquet;
 import main.java.com.company.Paquet.connexion.PaquetAppel;
@@ -9,9 +10,10 @@ import main.java.com.company.Paquet.transfert.PaquetDonnees;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
-import static main.java.com.company.MyUtils.Constante.S_ECR;
-import static main.java.com.company.MyUtils.Constante.S_LEC;
+import static main.java.com.company.MyUtils.Util_File_path.S_ECR;
+import static main.java.com.company.MyUtils.Util_File_path.S_LEC;
 
 
 public class Transport {
@@ -31,16 +33,19 @@ public class Transport {
      */
     public synchronized void readFromTransport(){
 
-        File myFile = new File(S_LEC);//chemin fichier
+       // File myFile = new File(S_LEC);//chemin fichier
+        ArrayList<String> list = Util_File_RW.ReadToFile(S_LEC);
         Npdu transportToReseau;
         Paquet paquetAppel;
         Paquet paquetDonnee;
         Paquet paquetLiberation;
         // essaie lecture
-        try(Scanner myReader = new Scanner(myFile)){
-            while(myReader.hasNextLine()){
-                transportToReseau = new Npdu();
-                String lineRead = myReader.nextLine();//prend ligne
+        //try(Scanner myReader = new Scanner(myFile)){
+          //  while(myReader.hasNextLine()){
+        for (String lineRead : list) {
+
+            transportToReseau = new Npdu();
+            //    String lineRead = myReader.nextLine().toString();//prend ligne
                 String[] dataFile = lineRead.split(" ");//**decoupe la ligne  en mot
                 boolean validNpdu = false;
                 
@@ -102,10 +107,10 @@ public class Transport {
                 }
             }
             
-        }catch(FileNotFoundException e){
-            System.out.println("An error occurred.");
-			e.printStackTrace();
-        }
+//        }catch(FileNotFoundException e){
+//            System.out.println("An error occurred.");
+//			e.printStackTrace();
+//        }
     }
 
 
