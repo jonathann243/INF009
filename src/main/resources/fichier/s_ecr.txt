@@ -1,45 +1,9 @@
-PaquetAppel{adresseSource=10, adresseDestination=233, numeroConnexion=113, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=233, numeroConnexion=113, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=233, numeroConnexion=113, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=43, numeroConnexion=63, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=43, numeroConnexion=63, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=43, numeroConnexion=63, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=202, numeroConnexion=36, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=202, numeroConnexion=36, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=202, numeroConnexion=36, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=254, numeroConnexion=252, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=254, numeroConnexion=252, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=254, numeroConnexion=252, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=197, numeroConnexion=190, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=197, numeroConnexion=190, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=197, numeroConnexion=190, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=142, numeroConnexion=231, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=142, numeroConnexion=231, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=142, numeroConnexion=231, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=102, numeroConnexion=250, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=102, numeroConnexion=250, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=102, numeroConnexion=250, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=149, numeroConnexion=115, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=149, numeroConnexion=115, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=149, numeroConnexion=115, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=202, numeroConnexion=12, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=202, numeroConnexion=12, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=202, numeroConnexion=12, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=123, numeroConnexion=195, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=123, numeroConnexion=195, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=123, numeroConnexion=195, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=4, numeroConnexion=105, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=4, numeroConnexion=105, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=4, numeroConnexion=105, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=158, numeroConnexion=221, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=158, numeroConnexion=221, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=158, numeroConnexion=221, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=125, numeroConnexion=148, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=125, numeroConnexion=148, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=125, numeroConnexion=148, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=152, numeroConnexion=105, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=152, numeroConnexion=105, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=152, numeroConnexion=105, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=66, numeroConnexion=196, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=66, numeroConnexion=196, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=66, numeroConnexion=196, type=00010011}
+PaquetAppel{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00001011}
+PaquetDonnees{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00000000, donnees='jonathan'}
+PaquetLiberation{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00010011}
+PaquetAppel{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00001011}
+PaquetDonnees{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00000000, donnees='JEAN'}
+PaquetLiberation{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00010011}
+PaquetAppel{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00001011}
+PaquetDonnees{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00000000, donnees='ARIANE'}
+PaquetLiberation{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00010011}

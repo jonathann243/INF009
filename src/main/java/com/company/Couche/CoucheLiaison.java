@@ -3,7 +3,7 @@ package main.java.com.company.Couche;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Liaison {
+public class CoucheLiaison {
 
     /**
      * Methode qui permet de generer  l'adresse de destination

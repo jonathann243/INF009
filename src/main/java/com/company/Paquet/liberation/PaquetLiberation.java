@@ -4,7 +4,6 @@ package main.java.com.company.Paquet.liberation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import main.java.com.company.Enum.Primitiv;
 import main.java.com.company.MyUtils.Util_Binary;
 import main.java.com.company.Paquet.Paquet;
 

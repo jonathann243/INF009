@@ -1,8 +1,7 @@
 package main.java.com.company.Couche;
 
 import main.java.com.company.MyUtils.Util_File_RW;
-import main.java.com.company.Npdu;
-import main.java.com.company.Paquet.connexion.PaquetAppel;
+import main.java.com.company.PaquetInterCouche;
 import main.java.com.company.Paquet.connexion.PaquetCommunicationEtablie;
 import main.java.com.company.Paquet.connexion.PaquetIndicationLiberation;
 import main.java.com.company.Paquet.transfert.PaquetDonnees;
@@ -11,52 +10,34 @@ import main.java.com.company.Paquet.transfert.PaquetDonnees;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Queue;
-import java.util.Timer;
 
 import static main.java.com.company.MyUtils.Util_File_path.*;
 
-public class Reseau {
+public class CoucheReseau {
 
-    private Queue<Npdu> canalTransportToReseau;
-    private Queue<Npdu> canalReseauToTransport;
-    private Queue<Npdu> canalReseauToProcessing;
-    private Queue<Npdu> canalProcessingToReseau;
-    private Timer timer;
-    private boolean disconnected;
-    private boolean connect;
+    private Queue<PaquetInterCouche> canalTransportToReseau;
 
-    public Reseau(Queue<Npdu> canalTransportToReseau, Queue<Npdu> canalReseauToTransport, Queue<Npdu> canalReseauToProcessing, Queue<Npdu> canalProcessingToReseau) {
+    public CoucheReseau(Queue<PaquetInterCouche> canalTransportToReseau) {
         this.canalTransportToReseau = canalTransportToReseau;
-        this.canalReseauToTransport = canalReseauToTransport;
-        this.canalReseauToProcessing = canalReseauToProcessing;
-        this.canalProcessingToReseau = canalProcessingToReseau;
 
-        Start();
+
     }
-
-
-    private void Start() {
-        disconnected = false;
-        connect = false;
-    }
-
-    
 
     //Reseau qui lit les paquets qui lui sont destinés
     public synchronized void ReadPaquetFromTransport(){
         while(true){
 
-            if(!disconnected && canalTransportToReseau.size() > 0){
-                if(canalTransportToReseau.peek() instanceof Npdu){
+            if( canalTransportToReseau.size() > 0){
+                if(canalTransportToReseau.peek() instanceof PaquetInterCouche){
 
-                    Npdu npduDuTransport = canalTransportToReseau.poll();
+                    PaquetInterCouche npduDuTransport = canalTransportToReseau.poll();
                     String messagePour_L_lec=" ";
                     String messagePour_L_ecr=" ";
 
                 //**** CONNECTION <Liaion>
                     if(npduDuTransport.type == 0b0000_1011){
                         int adressesource = npduDuTransport.adresseSource;
-                        int resultatGenCon = Liaison.genererReponseConnexion(adressesource);
+                        int resultatGenCon = CoucheLiaison.genererReponseConnexion(adressesource);
                         int adressedestination=npduDuTransport.getAdressedestination();
                        switch(resultatGenCon){
 
@@ -87,7 +68,7 @@ public class Reseau {
                     if(npduDuTransport.type == 0b0000_0000){
                         int adressesource = npduDuTransport.adresseSource;
                         int ps=npduDuTransport.ps;
-                        ArrayList<Integer> resultatGenTrans = Liaison.genererReponsePaquetAcquitement(adressesource,ps);
+                        ArrayList<Integer> resultatGenTrans = CoucheLiaison.genererReponsePaquetAcquitement(adressesource,ps);
 
                         if (resultatGenTrans.size()>0){//negatif  //pas de reponse
                             if (resultatGenTrans.contains(1)){//<NO>
@@ -114,7 +95,6 @@ public class Reseau {
                     if(npduDuTransport.type == 0b0001_0011){
 
                         PaquetIndicationLiberation paquetIndicationLiberation=new PaquetIndicationLiberation(npduDuTransport.getAdresseSource(),npduDuTransport.adressedestination,"00000010",npduDuTransport.getConnection());
-                       // messagePour_L_lec="N_DISCONNECT.req"+paquetIndicationLiberation.toString();
                         messagePour_L_ecr=paquetIndicationLiberation.toString();
                         npduDuTransport.setPaquet(paquetIndicationLiberation);
 
@@ -122,7 +102,7 @@ public class Reseau {
 
 
                     Util_File_RW.writeToFile(messagePour_L_ecr,L_ECR);
-                    writeTo_L_FLEC(messagePour_L_lec);
+                    writeFileL_lec(messagePour_L_lec);
                 }
             }
 
@@ -132,14 +112,9 @@ public class Reseau {
 
 
 
-    /**
-     * Methode qui permet d'écrire dans le fichier L_LEC
-     * @param message : le message à écrire dans le fichier
-     * @throws FileNotFoundException : Si le fichier n'a pas été trouvé
-     * @throws IOException : erreur au niveau du system I/O
-     * @return void
-     */
-    public static void writeTo_L_FLEC(String message){
+    //Methode qui permet d'écrire dans le fichier L_LEC
+
+    public static void writeFileL_lec(String message){
 
         File file = new File(L_LEC);
         try(
