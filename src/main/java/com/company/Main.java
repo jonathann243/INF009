@@ -24,24 +24,7 @@ public class Main {
     public static void main(String[] args){
         demarreThreads();
         int nbreThreadCurrent = Thread.activeCount();
-        System.out.println(nbreThreadCurrent);
-    }
-
-    /**
-     * Methode qui permet de générer les addresses sources et destinations
-     * @code {destination} correspond également au numero de connexion
-     * @return void
-     */
-    private static void genererSourceDestination(){
-
-        int destination =  transport.setAdresseDestination();
-        int source = transport.setAdresseSource(destination);
-
-        message = "N_CONNECT " + source + " " + destination + "\n" + 
-                "N_DATA " + destination + " Donnée-" +  ++nbTest + "\n" +
-                "N_DISCONNECT " + source + " " + destination + "\n";
- 
-        transport.writeTo_S_ECR(message);
+        //System.out.println(nbreThreadCurrent);
     }
 
     /**
@@ -54,17 +37,17 @@ public class Main {
         lireDeTransport.start();
 
         try {
-            Thread.sleep(1000);
+            lireDeTransport.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         ecrireDeTransport = new Thread(transport::writeFromTransport);
         ecrireDeTransport.setName("Thread-ecrireDeTransport");
-        ecrireDeTransport.start(); 
-        
+        ecrireDeTransport.start();
+
         try {
-            Thread.sleep(1000);
+            ecrireDeTransport.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -72,6 +55,7 @@ public class Main {
         lireDeReseau = new Thread(reseau::ReadPaquetFromTransport);
         lireDeReseau.setName("Thread-lireDeReseau");
         lireDeReseau.start();
+
 
 
     }

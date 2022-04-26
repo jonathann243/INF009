@@ -1,11 +1,14 @@
 package main.java.com.company;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import main.java.com.company.Enum.Primitiv;
 import main.java.com.company.Paquet.Paquet;
-
+@Getter
+@Setter
 public class Npdu {
-    public Primitiv type;
+    public byte type;
     public Paquet paquet;
     public int adresseSource;
     public int adressedestination;
@@ -19,7 +22,6 @@ public class Npdu {
     
     @Override
     public String toString() {
-        //return type + " " + adresseSource + " " + adressedestination + " " + data==null ? "" : data;
         return paquet.toString();
     }
 

@@ -17,7 +17,8 @@ public class Util_File_RW {
                 FileWriter fileWriter = new FileWriter(file, true);
                 BufferedWriter bw = new BufferedWriter(fileWriter);
                 PrintWriter out = new PrintWriter(bw)){
-            out.println(message.toString());
+            out.println(message);
+            System.out.println(message);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

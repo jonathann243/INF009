@@ -1,2 +1,36 @@
-N_CONNECT_req 10 52 10
-N_CONNECT_req 10 52 10
+N_CONNECT.resp
+SEND = <OK> NumCon = 113
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 63
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 36
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 252
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 190
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 231
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 195
+ 
+N_CONNECT.resp
+SEND = <NEGATIF> NumCon = 105
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 221
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 148
+ 
+N_CONNECT.resp
+SEND = <NEGATIF> NumCon = 105
+ 
+N_CONNECT.resp
+SEND = <OK> NumCon = 196
+ 

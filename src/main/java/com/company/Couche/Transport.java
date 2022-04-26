@@ -17,7 +17,7 @@ import static main.java.com.company.MyUtils.Util_File_path.S_LEC;
 
 
 public class Transport {
-   
+
     Thread threadTransport, lireDeTransport, ecrireDeTransport;
     private Queue<Npdu> canalTransportToReseau;
     private Queue<Npdu> canalReseauToTransport;
@@ -28,27 +28,23 @@ public class Transport {
         this.canalReseauToTransport = canalReseauToTransport;
     }
 
-    /**
-     * Methode qui permet de lire le fichier S_lec.txt
-     */
+    //Methode qui permet de lire dans le fichier S_LEC  et de le stocker dans la queue canalReseauToTransport
     public synchronized void readFromTransport(){
 
-       // File myFile = new File(S_LEC);//chemin fichier
-        ArrayList<String> list = Util_File_RW.ReadToFile(S_LEC);
+        ArrayList<String> list = Util_File_RW.ReadToFile(S_LEC);//On lit le fichier S_LEC et on retourent une liste de String
         Npdu transportToReseau;
+        //on definit un paquet de type pour chaque type(3)
         Paquet paquetAppel;
-        Paquet paquetDonnee;
         Paquet paquetLiberation;
-        // essaie lecture
-        //try(Scanner myReader = new Scanner(myFile)){
-          //  while(myReader.hasNextLine()){
+        int numconnexion=genererNumeroConnection();
+        int numeroDestination = Liaison.generateAdresseDestination(Integer.parseInt(list.get(list.size() - 1).split(" ")[1]));
+        //on lit chaque operation sur le fichier S_LEC
+        //et on traite selon chaque cas
         for (String lineRead : list) {
-
             transportToReseau = new Npdu();
-            //    String lineRead = myReader.nextLine().toString();//prend ligne
-                String[] dataFile = lineRead.split(" ");//**decoupe la ligne  en mot
+            String[] dataFile = lineRead.split(" ");//**decoupe la ligne  en mot
+
                 boolean validNpdu = false;
-                
                 // Si c'est la fin du fichier
                 if(lineRead.equals(""))
                     break;
@@ -57,28 +53,28 @@ public class Transport {
 
                     String directive = dataFile[0];
                     int numeroSource = Integer.parseInt(dataFile[1]);
-                    int numeroDestination = 0;
-
-                    if(dataFile.length> 2)
-                        numeroDestination = Integer.parseInt(dataFile[2]);
 
                     switch (directive) {
                         case "N_CONNECT":{
-                            paquetAppel = new PaquetAppel(numeroSource,numeroDestination);
-                            transportToReseau.type = Primitiv.N_CONNECT_req;
+                             numconnexion=genererNumeroConnection();
+                            numeroDestination = Liaison.generateAdresseDestination(Integer.parseInt(list.get(list.size() - 1).split(" ")[1]));
+                            paquetAppel = new PaquetAppel(numeroSource,numeroDestination,numconnexion);
+                            transportToReseau.type = 0b0000_1011;
                             transportToReseau.adresseSource = numeroSource;
                             transportToReseau.adressedestination = numeroDestination;
                             transportToReseau.paquet = paquetAppel;
-                            transportToReseau.connection = genererNumeroConnection();
-                          //  transportToReseau.data = transportToReseau.toString();
+                            transportToReseau.connection = numconnexion;
+                            canalReseauToTransport.add(transportToReseau);
+
                             validNpdu = true;
                             break;
                         }
                         case "N_DATA":{
-                            paquetDonnee = new PaquetDonnees(numeroSource, numeroDestination, dataFile[3]);
-                            transportToReseau.type = Primitiv.N_DATA_req;
+                            PaquetDonnees paquetDonnee = new PaquetDonnees(numeroSource,numeroDestination,numconnexion, (byte) 0b0000_0000, dataFile[3]);
+                            transportToReseau.type = 0b0000_0000;
                             transportToReseau.adresseSource = numeroSource;
                             transportToReseau.adressedestination = numeroDestination;
+                            transportToReseau.connection = numconnexion;
                             transportToReseau.paquet = paquetDonnee;
                             transportToReseau.data = dataFile[3];
                             validNpdu = true;
@@ -86,12 +82,12 @@ public class Transport {
                             break;
                         }
                         case "N_DISCONNECT":{
-                            paquetLiberation = new PaquetLiberation(numeroSource, numeroDestination);
-                            transportToReseau.type = Primitiv.N_DISCONNECT_req;
+                            paquetLiberation = new PaquetLiberation(numeroSource,numeroDestination, numconnexion, (byte) 0b0001_0011);
+                            transportToReseau.type = 0b0001_0011;
                             transportToReseau.adresseSource = numeroSource;
+                            transportToReseau.connection = numconnexion;
                             transportToReseau.adressedestination = numeroDestination;
                             transportToReseau.paquet = paquetLiberation;
-                            //transportToReseau.data = transportToReseau.toString();
                             validNpdu = true;
                             break;
                         }
@@ -106,50 +102,19 @@ public class Transport {
                     }
                 }
             }
-            
-//        }catch(FileNotFoundException e){
-//            System.out.println("An error occurred.");
-//			e.printStackTrace();
-//        }
     }
 
 
-     /**
-     * Methode qui d'ecrire dans le fichier S_ECR
-     * @throws FileNotFoundException : Si le fichier n'a pas été trouvé
-     * @throws IOException : erreur au niveau du system I/O
-     * 
-     * @return String
-     */
-	public void writeFromTransport(){
-        File file = new File(S_ECR);
-        
-        try(
-            FileWriter fileWriter = new FileWriter(file, true);
-            BufferedWriter bw = new BufferedWriter(fileWriter);
-            PrintWriter out = new PrintWriter(bw)
-            ){
-
-            /*canalTransportToReseau.forEach(e ->{
-                    out.println(e.type + " " + e.adresseSource + " " + e.adressedestination + " " 
-                    + e.data==null?"":e.data);
-            });*/
+     //Methode qui d'ecrire dans le fichier S_ECR
+    public void writeFromTransport(){
             canalTransportToReseau.forEach(e ->{
-                out.println(e.toString());
-            });
-                
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();  
-        }
-        catch (IOException e) {
-            e.printStackTrace();  
-        }
+                Util_File_RW.writeToFile(e.toString(),S_ECR);});
     }
 
     /**
      * Methode qui permet d'écrire dans le fichier S_ECR
      * @param message : le message à écrire dans le fichier
-     * 
+     *
      * @throws FileNotFoundException : Si le fichier n'a pas été trouvé
      * @throws IOException : erreur au niveau du system I/O
      * @return void
@@ -162,10 +127,10 @@ public class Transport {
         PrintWriter out = new PrintWriter(bw)){
             out.println(message.toString());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();  
+            e.printStackTrace();
         }
         catch (IOException e) {
-            e.printStackTrace();  
+            e.printStackTrace();
         }
     }
 
@@ -228,10 +193,10 @@ public class Transport {
      * @return int
      */
     public int getRandomNumber(int max){
-        
+
         Random random = new Random();
         return random.nextInt(max) + 1;
-         
+
     }
 
     /**
@@ -250,7 +215,7 @@ public class Transport {
         return source;
      }
 
-     
+
      /**
      * Methode qui permet de set l'adresse d'une source
      * @return String
@@ -278,9 +243,9 @@ public class Transport {
         this.canalReseauToTransport = canalReseauToTransport;
     }
 
-    
 
-	 
+
+
 }
 
 

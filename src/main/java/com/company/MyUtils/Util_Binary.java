@@ -2,6 +2,10 @@ package main.java.com.company.MyUtils;
 
 public class Util_Binary {
 
+    public static String inToString(byte x){
+        String s= String.format("%8s", Integer.toBinaryString(x & 0xFF)).replace(' ', '0');
+        return s;
+    }
     /***
      *  Classe util me permetatnt de changer la valeur d'un byte par bit
      * @param partofchamp changer le pr ps m
