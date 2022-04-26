@@ -1,6 +1,9 @@
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * CHEIKH AHMED TIDJANE NIANG
+ * ------------------------------------------------------------------
+ * */
 package main.java.com.company.Paquet.connexion;
-
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,3 +1,8 @@
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * CHEIKH AHMED TIDJANE NIANG
+ * ------------------------------------------------------------------
+ * */
 package main.java.com.company.Couche;
 import main.java.com.company.MyUtils.Util_File_RW;
 import main.java.com.company.PaquetInterCouche;

@@ -1,3 +1,8 @@
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * CHEIKH AHMED TIDJANE NIANG
+ * ------------------------------------------------------------------
+ * */
 package main.java.com.company;
 import main.java.com.company.Couche.CoucheReseau;
 import main.java.com.company.Couche.CoucheTransport;

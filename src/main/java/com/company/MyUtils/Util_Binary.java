@@ -1,3 +1,7 @@
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * ------------------------------------------------------------------
+ * */
 package main.java.com.company.MyUtils;
 
 public class Util_Binary {

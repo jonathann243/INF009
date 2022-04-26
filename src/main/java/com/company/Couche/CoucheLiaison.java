@@ -1,3 +1,8 @@
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * CHEIKH AHMED TIDJANE NIANG
+ * ------------------------------------------------------------------
+ * */
 package main.java.com.company.Couche;
 
 import java.util.ArrayList;

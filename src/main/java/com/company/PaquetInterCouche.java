@@ -1,4 +1,9 @@
-package main.java.com.company;
+
+/** -----------------------------------------AUTEUR--------------------
+ * *JONATHAN KANYINDA
+ * CHEIKH AHMED TIDJANE NIANG
+ * ------------------------------------------------------------------
+ * */package main.java.com.company;
 
 
 import lombok.Getter;
