@@ -13,7 +13,7 @@ import java.util.Queue;
 
 public class Main {
 
-    private static Thread lireDeTransport, ecrireDeTransport, lireDeReseau;
+    private static Thread threadLDTrs, thredEDTrs, lireDeReseau;
     private static Queue<PaquetInterCouche> canalTransportToReseau = new LinkedList<>();
 
     private static CoucheTransport transport = new CoucheTransport(canalTransportToReseau);
@@ -22,19 +22,19 @@ public class Main {
 
     public static void main(String[] args){
 
-        lireDeTransport = new Thread(transport::lireDepuisTrs);
-        lireDeTransport.start();
+        threadLDTrs = new Thread(transport::lireDepuisTrs);
+        threadLDTrs.start();
         try {
-            lireDeTransport.sleep(1000);
+            threadLDTrs.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        ecrireDeTransport = new Thread(transport::ecrireDepuisTrs);
-        ecrireDeTransport.start();
+        thredEDTrs = new Thread(transport::ecrireDepuisTrs);
+        thredEDTrs.start();
 
         try {
-            ecrireDeTransport.sleep(1000);
+            thredEDTrs.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,0 @@
-N_CONNECT.resp
-SEND = <OK> NumCon = 114
- 
-N_CONNECT.resp
-SEND = <OK> NumCon = 195
- 
-N_CONNECT.resp
-SEND = <OK> NumCon = 204
- 

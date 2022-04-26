@@ -1,9 +1,0 @@
-PaquetAppel{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00000000, donnees='jonathan'}
-PaquetLiberation{adresseSource=10, adresseDestination=79, numeroConnexion=114, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00000000, donnees='JEAN'}
-PaquetLiberation{adresseSource=10, adresseDestination=197, numeroConnexion=195, type=00010011}
-PaquetAppel{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00001011}
-PaquetDonnees{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00000000, donnees='ARIANE'}
-PaquetLiberation{adresseSource=10, adresseDestination=209, numeroConnexion=204, type=00010011}

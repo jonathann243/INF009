@@ -63,7 +63,6 @@ public class CoucheTransport {
                             transportToReseau.adressedestination = numeroDestination;
                             transportToReseau.paquet = paquetAppel;
                             transportToReseau.connection = numconnexion;
-                           // canalReseauToTransport.add(transportToReseau);
 
                             validNpdu = true;
                             break;
